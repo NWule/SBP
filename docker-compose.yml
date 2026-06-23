@@ -16,6 +16,8 @@ services:
     container_name: metabase_server
     ports:
       - "3000:3000"
+    volumes:
+      - metabase_data:/metabase-data
     depends_on:
       - mongodb
     networks:
@@ -23,6 +25,7 @@ services:
 
 volumes:
   mongo_data:
+  metabase_data:
 
 networks:
   analytics_network:

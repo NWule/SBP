@@ -1,3 +1,4 @@
+import json
 from pymongo import MongoClient
 import pandas as pd
 import re
@@ -25,16 +26,24 @@ db = client[db_name]
 recipes_collection = db["recipes"]
 reviews_collection = db["reviews"]
 
+recipes_collection.drop()
+reviews_collection.drop()
+
 for chunk in pd.read_csv("./data/recipes.csv", chunksize=chunk_size):
     for col in list_columns:
         if col in chunk.columns:
             chunk[col] = chunk[col].apply(parse_r_vector)
-    recipes_col = chunk.where(pd.notnull(chunk), None).to_dict("records")
+            
+    json_str = chunk.to_json(orient="records")
+    recipes_col = json.loads(json_str)
+    
     if recipes_col:
         recipes_collection.insert_many(recipes_col)
 
 for chunk in pd.read_csv("./data/reviews.csv", chunksize=chunk_size):
-    reviews_col = chunk.where(pd.notnull(chunk), None).to_dict("records")
+    json_str = chunk.to_json(orient="records")
+    reviews_col = json.loads(json_str)
+    
     if reviews_col:
         reviews_collection.insert_many(reviews_col)
 
