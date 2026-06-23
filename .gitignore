@@ -1,0 +1,7 @@
+recipes.csv
+reviews.csv
+__pycache__/
+*.pyc
+venv/
+env/
+.env

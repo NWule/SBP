@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_server
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - analytics_network
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase_server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - analytics_network
+
+volumes:
+  mongo_data:
+
+networks:
+  analytics_network:
+    driver: bridge
