@@ -1,5 +1,6 @@
 recipes.csv
 reviews.csv
+**/data
 __pycache__/
 *.pyc
 venv/
