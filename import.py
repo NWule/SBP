@@ -1,6 +1,7 @@
 import json
 from pymongo import MongoClient
 import pandas as pd
+from datetime import datetime
 import re
 
 
@@ -36,6 +37,10 @@ for chunk in pd.read_csv("./data/recipes.csv", chunksize=chunk_size):
             
     json_str = chunk.to_json(orient="records")
     recipes_col = json.loads(json_str)
+
+    for doc in recipes_col:
+        if doc.get("DatePublished"):
+            doc["DatePublished"] = datetime.fromisoformat(doc["DatePublished"])
     
     if recipes_col:
         recipes_collection.insert_many(recipes_col)
@@ -43,6 +48,12 @@ for chunk in pd.read_csv("./data/recipes.csv", chunksize=chunk_size):
 for chunk in pd.read_csv("./data/reviews.csv", chunksize=chunk_size):
     json_str = chunk.to_json(orient="records")
     reviews_col = json.loads(json_str)
+
+    for doc in reviews_col:
+        if doc.get("DateSubmitted"):
+            doc["DateSubmitted"] = datetime.fromisoformat(doc["DateSubmitted"])
+        if doc.get("DateModified"):
+            doc["DateModified"] = datetime.fromisoformat(doc["DateModified"])
     
     if reviews_col:
         reviews_collection.insert_many(reviews_col)
