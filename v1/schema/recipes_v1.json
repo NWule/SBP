@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "_id",
+    "AggregatedRating",
+    "AuthorId",
+    "AuthorName",
+    "Calories",
+    "CarbohydrateContent",
+    "CholesterolContent",
+    "CookTime",
+    "DatePublished",
+    "Description",
+    "FatContent",
+    "FiberContent",
+    "Images",
+    "Keywords",
+    "Name",
+    "PrepTime",
+    "ProteinContent",
+    "RecipeCategory",
+    "RecipeId",
+    "RecipeIngredientParts",
+    "RecipeIngredientQuantities",
+    "RecipeInstructions",
+    "RecipeServings",
+    "RecipeYield",
+    "ReviewCount",
+    "SaturatedFatContent",
+    "SodiumContent",
+    "SugarContent",
+    "TotalTime"
+  ],
+  "properties": {
+    "_id": {
+      "$ref": "#/$defs/ObjectId"
+    },
+    "AggregatedRating": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Double"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "AuthorId": {
+      "type": "integer"
+    },
+    "AuthorName": {
+      "type": "string"
+    },
+    "Calories": {
+      "$ref": "#/$defs/Double"
+    },
+    "CarbohydrateContent": {
+      "$ref": "#/$defs/Double"
+    },
+    "CholesterolContent": {
+      "$ref": "#/$defs/Double"
+    },
+    "CookTime": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "DatePublished": {
+      "$ref": "#/$defs/Date"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "FatContent": {
+      "$ref": "#/$defs/Double"
+    },
+    "FiberContent": {
+      "$ref": "#/$defs/Double"
+    },
+    "Images": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "Keywords": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "Name": {
+      "type": "string"
+    },
+    "PrepTime": {
+      "type": "string"
+    },
+    "ProteinContent": {
+      "$ref": "#/$defs/Double"
+    },
+    "RecipeCategory": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "RecipeId": {
+      "type": "integer"
+    },
+    "RecipeIngredientParts": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "RecipeIngredientQuantities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "RecipeInstructions": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "RecipeServings": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Double"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "RecipeYield": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "ReviewCount": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Double"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "SaturatedFatContent": {
+      "$ref": "#/$defs/Double"
+    },
+    "SodiumContent": {
+      "$ref": "#/$defs/Double"
+    },
+    "SugarContent": {
+      "$ref": "#/$defs/Double"
+    },
+    "TotalTime": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "ObjectId": {
+      "type": "object",
+      "properties": {
+        "$oid": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{24}$"
+        }
+      },
+      "required": [
+        "$oid"
+      ],
+      "additionalProperties": false
+    },
+    "Double": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$numberDouble": {
+              "enum": [
+                "Infinity",
+                "-Infinity",
+                "NaN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "Date": {
+      "type": "object",
+      "properties": {
+        "$date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "$date"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

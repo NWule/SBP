@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "_id",
+    "AuthorId",
+    "AuthorName",
+    "DateModified",
+    "DateSubmitted",
+    "Rating",
+    "RecipeId",
+    "Review",
+    "ReviewId"
+  ],
+  "properties": {
+    "_id": {
+      "$ref": "#/$defs/ObjectId"
+    },
+    "AuthorId": {
+      "type": "integer"
+    },
+    "AuthorName": {
+      "type": "string"
+    },
+    "DateModified": {
+      "type": "string"
+    },
+    "DateSubmitted": {
+      "$ref": "#/$defs/Date"
+    },
+    "Rating": {
+      "type": "integer"
+    },
+    "RecipeId": {
+      "type": "integer"
+    },
+    "Review": {
+      "type": "string"
+    },
+    "ReviewId": {
+      "type": "integer"
+    }
+  },
+  "$defs": {
+    "ObjectId": {
+      "type": "object",
+      "properties": {
+        "$oid": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{24}$"
+        }
+      },
+      "required": [
+        "$oid"
+      ],
+      "additionalProperties": false
+    },
+    "Date": {
+      "type": "object",
+      "properties": {
+        "$date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "$date"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
